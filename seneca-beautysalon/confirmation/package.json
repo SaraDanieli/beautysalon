@@ -1,0 +1,14 @@
+{
+  "name": "confirmation",
+  "version": "1.0.0",
+  "description": "",
+  "main": "confirmation.service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "sara danieli",
+  "license": "ISC",
+  "dependencies": {
+    "seneca": "^3.23.3"
+  }
+}

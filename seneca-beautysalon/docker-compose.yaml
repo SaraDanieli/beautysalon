@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+    treatments:
+        build:
+          context: ./treatments
+        image: seneca-beautysalon/treatments
+        ports:
+        - "9002:9002"
+        restart: on-failure
+        depends_on:
+        - mongoDB
+    appointments:
+        build:
+          context: ./appointments
+        image: seneca-beautysalon/appointments
+        ports:
+        - "9003:9003"
+        restart: on-failure
+        depends_on:
+        - mongoDB
+    confirmation:
+        build:
+          context: ./confirmation
+        ports:
+        - "9004:9004"
+        image: seneca-beautysalon/confirmation
+        restart: on-failure
+    mongoDB:
+        container_name: mongoDBseneca
+        image: mongo
+        volumes:
+        - ./data:/data/db
+        ports:
+        - '27017:27017'

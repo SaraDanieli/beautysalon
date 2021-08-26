@@ -1,0 +1,17 @@
+{
+  "name": "treatments",
+  "version": "1.0.0",
+  "description": "",
+  "main": "treatment.service.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^4.1.0",
+    "mongoose": "^5.13.5",
+    "seneca": "^3.23.3",
+    "seneca-entity": "^14.0.0"
+  }
+}

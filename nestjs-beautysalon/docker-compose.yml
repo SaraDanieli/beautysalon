@@ -1,0 +1,54 @@
+#Dockerfile adapted from: 
+# Author: Maciej Cieślar. Source: https://blog.logrocket.com/containerized-development-nestjs-docker/
+
+
+version: '3.7'
+
+services:
+  treatments:
+        build:
+          context: ./treatments
+          target: development
+        image: nestjs-beautysalon/treatments
+        ports:
+        - "3001:3001"
+        restart: on-failure
+        command: npm run start:dev
+        depends_on:
+        - mongoDB
+        - rabbitmq
+  appointments:
+        build:
+          context: ./appointments
+          target: development
+        image: nestjs-beautysalon/appointments
+        ports:
+        - "3000:3000"
+        restart: on-failure
+        command: npm run start:dev
+        depends_on:
+        - rabbitmq
+        - mongoDB
+  confirmation:
+        build:
+          context: ./confirmation
+          target: development
+        image: nestjs-beautysalon/confirmation
+        ports:
+        - "3003:3003"
+        restart: on-failure
+        command: npm run start:dev
+        depends_on:
+        - rabbitmq
+  mongoDB:
+        container_name: mongo
+        image: mongo
+        volumes:
+        - ./data:/data/db
+        ports:
+        - '27017:27017'
+  rabbitmq:
+        image: rabbitmq:3
+        ports:
+        - "5672:5672"
+        - "15672:15672"

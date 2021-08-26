@@ -1,0 +1,29 @@
+// SENECA version implementation of the original benchamark application Beauty Salon borrowed from 
+/* 
+
+Sailer, I., Lichtenthäler, R., & Wirtz, G. (2021). An Evaluation of Frameworks for Microservices Development.
+Communications in Computer and Information Science, 
+1360, 90–102. https://doi.org/10.1007/978-3-030-71906-7_8 
+
+Github code repository of Beauty Salon implemented with Moleculer: https://github.com/IsabellSailer/ms-framework-comparison/tree/master/Implementations/Moleculer
+
+
+*/
+
+//the code to create a microservice with seneca 
+
+require( 'seneca' )()
+  //.use('entity')
+  .use( 'treatments.plugin' )
+  // treatments is the name of the host created by the docker compose file
+  .listen( { host: "treatments", port:9002, pin:'role:treatment' }, () => {
+    console.log('Treatment microservice started on port 9002...')
+  } )
+
+
+  //-----*  to run  locally without docker *------
+  // .listen( {port:9002, pin:'role:treatment' }, () => {
+  //   console.log('Treatment microservice started on port 9002...')
+  // } )
+ 
+
